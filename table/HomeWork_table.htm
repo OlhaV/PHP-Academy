@@ -1,0 +1,50 @@
+﻿<html>
+<head>
+    <title>Table</title>
+    <style>
+    	table tr {
+    		height: 20px;
+    	}
+    	table th, td {
+    		width: 100px;
+    	}
+    	table tr#fourth {
+    		height: 200px;
+    	}
+    	.third_col {
+    		width: 50px;
+    	}
+    </style>
+</head>
+<body>
+	<table border='1' bordercolor='green'>
+		<tr>
+			<td rowspan='2'></td>
+			<td class='third_col' rowspan='2' colspan='2'></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td class='third_col'></td>
+			<td class='third_col'></td>
+			<td></td>
+		</tr>
+		<tr id='fourth'>
+			<td></td>
+			<td class='third_col' colspan='2'></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td class='third_col' rowspan='2' colspan='2'></td>
+			<td rowspan='2'></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+	</table>
+</body>
+</html>
