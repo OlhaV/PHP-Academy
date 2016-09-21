@@ -1,0 +1,102 @@
+﻿<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Работа с div</title>
+    <style type="text/css">
+        body {
+            width: 50%;
+        }
+        .green {
+            border: 3px solid green; 
+            margin: 10px; 
+        }
+        .red {
+            border: 3px solid red; 
+            margin: 10px; 
+        }
+        .blue {
+            border: 3px solid blue; 
+            margin: 10px; 
+            float: left;
+        }
+        .after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .yellow {
+            border: 3px solid yellow; 
+            margin: 10px; 
+        }
+        .first_yellow {
+            height: 15px;
+        }
+        .first_row {
+            height: 70px; 
+        }
+        .third_row {
+            height: 200px;
+        }
+        .first_blue {
+            width: 25%;
+        }
+        .second_blue {
+            width: 41%;
+        } 
+        .second_row {
+            height: 15px;
+            width: 22%;
+        }
+        .first_third_row {
+            width: 25%;
+        }
+        .second_third_row {
+            width: 69%;
+        }
+        .yellow_third_row_first {
+            height: 60%;
+        }
+        .yellow_third_row_second {
+            height: 20%;
+        }
+    </style>
+</head>
+<body>
+	<div class="green">
+        <div class="red">
+            <div class="blue first_row first_blue"></div>
+            <div class="blue first_row second_blue"></div>
+            <div class="blue first_row first_blue">
+                <div class="yellow first_yellow"></div>
+                <div class="yellow first_yellow"></div>
+            </div>
+            <div class="after"></div>
+        </div>   
+        <div class="red">
+            <div class="blue second_row"></div>
+            <div class="blue second_row"></div>
+            <div class="blue second_row"></div>
+            <div class="blue second_row"></div>
+            <div class="after"></div>
+        </div>   
+        <div class="red">
+            <div class="blue first_third_row third_row"></div>
+            <div class="blue second_third_row third_row">
+                <div class="yellow yellow_third_row_first"></div>
+                <div class="yellow yellow_third_row_second"></div>
+            </div>
+            <div class="after"></div>
+        </div>   
+        <div class="red">
+            <div class="blue first_blue first_row">
+                <div class="yellow first_yellow"></div>
+                <div class="yellow first_yellow"></div>
+            </div>
+            <div class="blue second_blue first_row"></div>
+            <div class="blue first_blue first_row"></div>
+            <div class="after"></div>
+        </div>   
+    </div>
+
+</body>
+</html>
