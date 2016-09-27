@@ -7,14 +7,14 @@
 	width: 1260px;
 	height: 620px;
 	position: absolute;
-    right: 1px;
-    bottom: 5px;
+	right: 1px;
+	bottom: 5px;
 }
 
 .upperLeft {
 	width: 172px;
 	height: 147px;
-    position: absolute;
+	position: absolute;
 	top: 1px;
 }
 
@@ -23,8 +23,8 @@
 	height: 356px;
 	position: absolute;
 	top: 50%;
-    right: 0;
-    margin-top: -178px;
+	right: 0;
+	margin-top: -178px;
 }
 
 .middleRight__internalSquare {
@@ -32,8 +32,8 @@
 	width: 145px;
 	height: 130px;
 	position: absolute;
-    top: 84px;
-    right: 313px;
+	top: 84px;
+	right: 313px;
 }
 
 @media screen and (max-width: 1260px) {
@@ -45,8 +45,8 @@
 @media screen and (min-width:768px) and (max-width:1024px) {
 	.middleRight {
 		position: absolute;
-    	right: 50%;
-    	margin-right: -302px;
+		right: 50%;
+		margin-right: -302px;
 	}
 }
 
@@ -55,6 +55,6 @@
 		position: absolute;
 		left: 0;
 		top: 50%;
-    	margin: -156px 0 0;
+		margin: -156px 0 0;
 	}
 }
