@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<img src='formula.gif' style='width: 500px;'/> <br/>
+	<button onclick='calculate()'>Calculate</button>
+	<p class='result'></p>
+</body>
+<script type="text/javascript">
+function calculate() {
+
+	var v0 = +prompt('Enter V value', 'V0');
+	var t = +prompt('Enter t value', 't');
+	var g = 9.8;
+	var h; 
+	console.log(v0, t);
+
+	if(isNaN(v0) || isNaN(t) || v0 == '' || t == '') {
+		alert('Please, enter valid numbers');
+	} else {
+		h = v0*t + (g*t*t)/2;
+		document.getElementsByClassName('result')[0].innerHTML = 'h = ' + h;
+	}
+}
+</script>
+</html>
