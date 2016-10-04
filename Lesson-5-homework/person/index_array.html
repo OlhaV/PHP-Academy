@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+	var array = [];
+
+	function ask() {
+		    person.name = prompt("Введите свое имя:");
+		    person.sname = prompt("Введите свою фамилию:");
+		    person.age = prompt("Введите свой возраст:");
+		if (person.name && person.sname && person.age) {
+			return true;
+		} else if (person.name == null || person.sname == null || person.age == null) {
+			return false;
+		}
+	}
+
+	function say() {
+	    document.write("Имя: " + person.name + "<br />");
+	    document.write("Фамилия: " + person.sname + "<br />");
+	    document.write("Возраст: " + person.age + "<br />");
+	    document.write("<hr/>");
+	}
+
+	function add() {
+		array.push(person);
+	}
+
+for (i = 1; ; i++) {
+
+	var person = {
+		'name' : '',
+		'sname': '',
+		'age'  : ''
+	}
+	
+	if (ask()) {
+		say();
+		add();
+	} else {
+		break;
+	}
+
+	console.log(array);
+	console.log(person.name, person.sname, person.age);
+
+}
+
+</script>
+</html>
