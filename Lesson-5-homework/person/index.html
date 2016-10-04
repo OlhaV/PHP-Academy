@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+	var person = {
+		'name' : '',
+		'sname': '',
+		'age'  : ''
+	}
+
+	function ask() {
+	    this.name = prompt("Введите свое имя:");
+	    this.sname = prompt("Введите свою фамилию:");
+	    this.age = prompt("Введите свой возраст:");
+		if(this.name == null) {
+			console.log('stop!');
+		}
+	}
+
+	function say() {
+	    document.write("Имя: " + this.name + "<br />");
+	    document.write("Фамилия: " + this.sname + "<br />");
+	    document.write("Возраст: " + this.age + "<br />");
+	    document.write("<hr/>");
+	}
+
+	// Вызов функций.
+
+	ask.apply(person);
+	say.apply(person);
+
+
+
+	console.log(person.age);
+
+	</script>
+
+</html>
