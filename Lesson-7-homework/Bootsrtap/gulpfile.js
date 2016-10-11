@@ -6,13 +6,12 @@ var gulp = require('gulp'),
   watch = require('gulp-watch'),
   prefixer = require('gulp-autoprefixer'),
   cssmin = require('gulp-clean-css'),
-  sass = require('gulp-sass'),
   sourcemaps = require('gulp-sourcemaps'),
   imagemin = require('gulp-imagemin'),
   concatCss = require('gulp-concat-css'),
   concat = require('gulp-concat'),
   pngquant = require('imagemin-pngquant'),
-
+  sass = require('gulp-sass'),
   rigger = require('gulp-rigger'),
   rimraf = require('rimraf'),
 
@@ -28,16 +27,16 @@ var path = {
     fonts: 'build/fonts/'
   },
   src: {
-    html: 'src/index.html',
+    html: 'src/templates/index.html',
     js: 'src/js/*.js',
-    style: 'src/css/**/*.sass',
+    style: 'src/styles/**/*.*',
     img: 'src/img/**/*.*',
     fonts: 'src/fonts/**/*.*'
   },
   watch: {
-    html: 'src/*.html',
+    html: 'src/templates/*.html',
     js: 'src/js/*.js',
-    style: 'src/css/**/*.sass',
+    style: 'src/styles/**/*.*',
     img: 'src/img/**/*.*',
     fonts: 'src/fonts/**/*.*'
   },
@@ -45,12 +44,12 @@ var path = {
 };
 var config = {
   server: {
-    baseDir: "./src/"
+    baseDir: "./build/"
   },
   tunnel: true,
   host: 'localhost',
   port: 7000,
-  logPrefix: "MyConfigurator"
+  logPrefix: "boshConfigurator"
 };
 
 gulp.task('html:build', function () {
@@ -128,6 +127,3 @@ gulp.task('clean', function (cb) {
 });
 
 gulp.task('default', ['build', 'webserver', 'watch']);
-  
-  
-  

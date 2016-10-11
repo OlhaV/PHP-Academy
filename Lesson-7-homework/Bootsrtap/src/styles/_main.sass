@@ -1,6 +1,6 @@
 // 1. base 
 
-$g-color: #000
+$g-color: #011407
 $success: #3dcf7e
 $default: #eee
 
@@ -20,6 +20,10 @@ a
 	color: $g-color
 	text-decoration: none
 
+.clr 
+	content: ""
+    display: block
+    clear: both
 
 // 5. header 
 .wrapper 
@@ -31,6 +35,8 @@ a
 	background-color: #fff
 	+br(4px)
 	+bs(0 1px 1px rbga(223, 223, 223, 0.75))
+	&--lg 
+		padding: 20px 40px
 
 .nav 
 	margin: 0
@@ -38,6 +44,9 @@ a
 	list-style-type: none
 	li 
 		display: inline-block
+		a 
+		font-weight: 700
+		text-transform: uppercase
 
 .status: 
 	float: right
