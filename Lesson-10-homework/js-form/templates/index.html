@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Creating a Responsive Web Design</title>
+		<link rel="stylesheet" type="text/css" media="screen" href="../styles/contactus.css">
+		<script src="../js/jquery-2.1.4.min.js" type='text/javascript'></script>
+		<script src='../js/settings.js' type='text/javascript'></script>
+		<script src='../js/pattern.js' type='text/javascript'></script>
+		<script src='../js/languages.js' type='text/javascript'></script>
+		<script src='../js/component.js' type='text/javascript'></script>
+		<script src='../js/form.js' type='text/javascript'></script>
+		<script src='../js/translate.js' type='text/javascript'></script>
+	</head>
+	<body>
+
+	<section class="contact">
+		<div class='contact_form'>
+			<span class='form_langs form_ru'>ru</span> | <span class='form_langs form_ua'>ua</span> | <span class='form_langs form_en'>en</span>
+			<h3>Send us your Feedback</h3>
+				<form action='?' method='GET' id='form'>
+					
+					<div class='error_form_message'></div>
+					
+					<label class='label_first_name label_personal_info'>First Name</label> 
+					<input type="text" id='firstName' class='textfield input_personal_info' name='name' placeholder="Enter First Name"><br>
+					<label class='label_last_name label_personal_info'>Last Name</label> 
+					<input type="text" id='lastName' class='textfield input_personal_info' name='surname' placeholder="Enter Last Name"><br>
+					<label class='email_label label_personal_info'>Email</label> 
+					<input type="text" class='textfield input_personal_info' id='email' name='email' placeholder="Enter Your Email"><br>
+					<label class='phone_label label_personal_info'>Phone</label> 
+					<input type="text" class='textfield input_personal_info' id='phone' name='phone' placeholder="Enter Your Phone Number"><br>
+					<p class='contact_label'>How can we contact you?</p> <br>
+					<label class='by_phone_label'>By phone</label> 
+					<input type="radio" class='howToContact' name='1' value='phone'><br>
+					<label class='by_email_label'>By email</label> 
+					<input type="radio" class='howToContact' name='1' value='email'><br>
+					<label class='feedback_label'>Your Feedback</label> 
+					<textarea class='feedback textfield'></textarea><br>
+					<input type='submit' id='send' value='Send'>
+				</form>
+			</div>
+	</section>
+		
+
+	</body>
+		<script> 
+			var f1 = new Translate('#form');
+			var f1 = new Validator('#form', '#firstName', '#lastName', '#email', '#phone');
+		</script>
+	</html>

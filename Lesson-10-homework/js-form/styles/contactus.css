@@ -1,0 +1,165 @@
+/* CSS Document for Screens */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,700,700italic);
+
+/*------------- Body --------------*/
+
+body, html {
+    width: 100%;
+    height: 100%;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	font-weight: 300;
+	color: #555;
+	margin: 0;
+	padding: 0;
+    background-color: #eee9d9;
+}
+
+.correct {
+	-webkit-box-shadow:0 0 0 50px #33cc33 inset; 
+    -webkit-text-fill-color: #333;
+    background-color: rgb(51, 204, 51) !important;
+
+}
+
+.error {
+	-webkit-box-shadow:0 0 0 50px #ff0000 inset; 
+    -webkit-text-fill-color: #333;
+	background-color: #ff0000 !important; 
+}
+
+/*------------- Text --------------*/
+
+h3 {
+	margin: 0 0 .5em 0;
+	font-size: 1.3em;
+	font-weight: 700;
+}
+
+/*------------- Section Contact------------*/
+
+section.contact {
+    margin: 0 auto;
+	padding: 30px 30px;
+}
+
+div.contact_form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+form#form {
+    background: #c6c6c6;
+    box-shadow: 7px 7px 10px #515151;
+    border: 2px solid #b5b3ab;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+div.contact_form h3 {
+    text-align: center;
+}
+
+
+input, textarea {
+    border-radius: 4px;
+}
+
+
+input {
+    height: 25px;
+}
+
+
+textarea {
+    width: 370px;
+    height: 100px;
+    max-width: 370px;
+}
+
+
+label {
+    width: 180px;
+    font-weight: bold;
+    float: left;
+    text-align: center;
+}
+
+p.contact_label {
+    font-weight: bold;
+    margin: 15px 0 -10px 0;
+    text-align: center;
+}
+
+.label_personal_info, .input_personal_info {
+    margin-top: 3px;
+}
+
+label.by_phone_label, label.by_email_label {
+    float: left;
+    text-align: right;
+}
+
+input.howToContact {
+    cursor: pointer;
+    margin-top: 6px;
+    float: left;
+    width: 68px;
+    height: 15px;
+}
+
+label.by_email_label::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+
+label.feedback_label {
+    width: 55%;
+    margin: 15px 0;
+    text-align: center;
+}
+
+input#send {
+    float: none;
+    width: 70px;
+    margin-top: 30px;
+    margin-left: 40%;
+}
+
+
+@media screen and (max-width: 640px) { 
+	section.contact h3 {
+        font-size: 1.1em;  
+    } 
+    
+    
+    label {
+        font-size: 0.9em;
+    }
+    
+    input#send {
+        margin-left: 33%;
+    }
+    
+    label.by_phone_label, label.by_email_label {
+        width: 50%;
+    }
+}
+
+
+@media screen and (max-width: 460px) {
+	label {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+    
+    input, textarea {
+        float: none;
+        width: 95%;
+    }
+}

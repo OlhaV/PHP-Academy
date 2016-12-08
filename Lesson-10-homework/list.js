@@ -47,6 +47,7 @@
     };
 
     $scope.removeItem = function() {
-        delete $scope.items[itemIndex];
+        $scope.items.splice(this.$index, 1);
+        // delete $scope.items[itemIndex];
     }
 }
