@@ -42,3 +42,18 @@
 .form-control {
   margin: 10px 0;
 }
+
+form .ng-invalid.ng-dirty {
+    background-color: lightpink;
+}
+
+form .ng-valid.ng-dirty {
+    background-color: lightgreen;
+}
+/*первые два стиля применяются к элементам в которые пользователь внес изменения,
+валидация производится angular после каждого действия пользователя (после каждого введенного символа)*/
+span.itemNotChosen, span.dateNotChosen {
+    color: red;
+    font-weight: bold;
+}
+

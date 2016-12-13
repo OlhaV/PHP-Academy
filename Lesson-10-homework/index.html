@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class='wrapper b-main'>
-        <h1 class='b-main__header'>Список покупок</h1>
+        <h1 class='b-main__header'>Список дел</h1>
         <div class="panel" ng-controller="ListCtrl">
             <h3 class="b-main__rest"> Осталось {{remain()}} из {{items.length}}</h4>
             <table class="table table-striped">
@@ -22,13 +22,20 @@
                 </tbody>
             </table>
             <form name="myForm" ng-submit="addItem()" novalidate>
-                <input class="form-control" type="text"
+                <!-- поле добавить пункт -->
+                <input class="form-control" type="text" class="form-control"
                     required ng-model="itemText" 
-                    size="30" placeholder="Добавить покупку">
-                <input class="form-control" type="date" 
+                    size="30" placeholder="Добавить пункт">
+                <span ng-show="myForm.itemText.$error.required" class="itemNotChosen"> 
+                    Please insert something 
+                </span>
+                <!-- поле выбрать дату -->
+                <input class="form-control" type="date" class="form-control"
                     required ng-model="itemDate" size="30">
+                <span ng-show="myform.itemDate.$error.required" class="dateNotChosen">
+                    Please choose a date
+                </span>
                 <input class="btn btn-primary" 
-                    ng-disabled="myForm.$invalid"
                     type="submit" value="Добавить">
             </form>
         </div>
