@@ -9,33 +9,45 @@
 </head>
 <body>
     <div class='wrapper b-main'>
-        <h1 class='b-main__header'>Список дел</h1>
+        <h1 class='b-main__header'>List of tasks</h1>
         <div class="panel" ng-controller="ListCtrl">
-            <h3 class="b-main__rest"> Осталось {{remain()}} из {{items.length}}</h4>
+            <h3 class="b-main__rest"> Remain {{remain()}} of {{items.length}}</h4>
             <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Task</th>
+                        <th>Due Date</th>
+                        <th>Priority</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <tr ng-repeat="item in items">
                         <td><input class="checkbox-inline" type="checkbox" ng-model="item.done"></td>
-                        <td><span class="done-{{item.done}}">{{item.text}}</span></td>
+                        <td><span ng-click='changeItem()' class="done-{{item.done}}">{{item.text}}</span></td>
                         <td><span ng-model="item.date">{{item.date}}</span></td>
+                        <td><span>{{item.priority}}</span></td>
                         <td><span ng-click="removeItem()" class='glyphicon glyphicon-remove'></span></td>
                     </tr>
                 </tbody>
             </table>
             <form name="myForm" ng-submit="addItem()" novalidate>
-                <!-- поле добавить пункт -->
                 <input class="form-control" type="text" class="form-control"
                     required ng-model="itemText" 
-                    size="30" placeholder="Добавить пункт">
-                <span ng-show="myForm.itemText.$error.required" class="itemNotChosen"> 
+                    size="30" placeholder="Add task">
+                <span ng-show="myForm.itemText.$error.required"> 
                     Please insert something 
                 </span>
-                <!-- поле выбрать дату -->
                 <input class="form-control" type="date" class="form-control"
                     required ng-model="itemDate" size="30">
-                <span ng-show="myform.itemDate.$error.required" class="dateNotChosen">
+                <select class='form-control' ng-model='chosenPrioprity' ng-options='item.priority for item in items'>
+                    <option value="">Choose priority</option>
+                </select>
+                <span ng-show="myform.itemDate.$error.required">
                     Please choose a date
                 </span>
-                <input class="btn btn-primary" 
+                <input class="btn btn-primary" ng-disabled='myForm.$invalid'
                     type="submit" value="Добавить">
             </form>
         </div>
