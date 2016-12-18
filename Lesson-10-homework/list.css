@@ -1,18 +1,25 @@
 ﻿.done-true {
-     /*Добавляет зачеркивание к выполненому делу.*/
-  text-decoration: line-through;
   color: grey;
 }
 .done-false {
-    /*Делает красным не выполненное дело*/
   text-decoration: underline;
-  color: red;
+  color: #1c6cbc;
+  cursor: pointer;
 }
 
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('fonts/glyphicons-halflings-regular.eot');
   src: url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('fonts/glyphicons-halflings-regular.woff') format('woff'), url('fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+.wrapper {
+  width: 400px; 
+  margin: 0 auto;
+}
+
+.b-main__header, .b-main__rest {
+  margin: 10px 0; 
 }
 
 .glyphicon {
@@ -31,3 +38,22 @@
 .glyphicon-remove:before {
   content: "\e014";
 }
+
+.form-control {
+  margin: 10px 0;
+}
+
+form .ng-invalid.ng-dirty {
+    background-color: lightpink;
+}
+
+form .ng-valid.ng-dirty {
+    background-color: lightgreen;
+}
+/*первые два стиля применяются к элементам в которые пользователь внес изменения,
+валидация производится angular после каждого действия пользователя (после каждого введенного символа)*/
+span.itemNotChosen, span.dateNotChosen {
+    color: red;
+    font-weight: bold;
+}
+

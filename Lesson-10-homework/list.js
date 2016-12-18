@@ -7,22 +7,16 @@
     //и AngularJS отразит состояние в пользовательском интерфейсе самостоятельно. Модель данных это старый-добрый объект JavaScript, который не нужно чем либо оборачивать или изменять свойства через специальные сеттеры.
 
     $scope.items = [
-      { text: 'Chocolate', done: true, date: "2016-12-12"},
-      { text: 'Potato', done: false, date: "2016-12-09"},
-      { text: 'Banana', done: false, date: "2016-12-16"},
-      { text: 'Water', done: true, date: "2016-12-16"}
+      { text: 'Buy chocolate', done: false, date: "2016-12-12"},
+      { text: 'Pay bills', done: false, date: "2016-12-16"},
+      { text: 'Visit granpa', done: false, date: "2016-12-09"},
+      { text: 'Call mother', done: false, date: "2016-12-16"}
     ];
  
     $scope.addItem = function () {
         if($scope.itemText && $scope.itemDate) {
             $scope.items.push({ text: $scope.itemText, done: false, date: $scope.itemDate});
-        } else if (!$scope.itemText){
-            alert('Please insert something');
-        } else if (!$scope.itemDate) {
-            alert('Please choose a date');
-        } else {
-            alert('Please insert required data');
-        }
+        } 
         //Неизменяемый метод Array.push. Его вызов обновляет модель, которая затем обновляет вид посредством связывания данных.
         //ng-repeat связан с этим массивом. Он автоматически проходится по массиву и добавляет новый DOM-элемент в вид. 
 
