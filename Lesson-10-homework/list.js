@@ -15,11 +15,12 @@
     }, true);
 
     $scope.addItem = function () {
-        if($scope.itemText && $scope.itemDate) {
+        if($scope.itemText && $scope.itemDate && $scope.priority) {
         	var newEntry = {
         		text: $scope.itemText, 
         		done: false, 
-        		date: $scope.itemDate
+        		date: $scope.itemDate,
+                priority: $scope.priority
         	}; 
 
             $scope.items.push(newEntry);
@@ -27,6 +28,9 @@
        $scope.itemText = '';
     };
  
+    $scope.customFilter = function(value) {
+
+    }
 
     // Вычисляем количество оставшихся покупок.
     $scope.remain = function () {

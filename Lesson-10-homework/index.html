@@ -41,8 +41,11 @@
                 </span>
                 <input class="form-control" type="date" class="form-control"
                     required ng-model="itemDate" size="30">
-                <select class='form-control' ng-model='chosenPrioprity' ng-options='item.priority for item in items'>
+                <select class='form-control' ng-model='priority' required>
                     <option value="">Choose priority</option>
+                    <option value="High">High</option>
+                    <option value="Regular">Regular</option>
+                    <option value="Low">Low</option>
                 </select>
                 <span ng-show="myform.itemDate.$error.required">
                     Please choose a date
