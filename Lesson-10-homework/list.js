@@ -31,7 +31,7 @@
     };
  
     $scope.customFilter = function(value) {
-        return value.done;
+        return value.done || value.priority 
     }
 
     // Вычисляем количество оставшихся покупок.
