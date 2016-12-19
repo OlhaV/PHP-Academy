@@ -1,6 +1,7 @@
 ﻿<!doctype html>
 <html ng-app>
 <head>
+    <title>Angular</title>
     <script src="angular.js"></script>
     <script src="list.js"></script>
     <link rel="stylesheet" href="list.css">
@@ -23,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in items">
+                    <tr ng-repeat="item in items | orderBy:customFilter">
                         <td><input class="checkbox-inline" type="checkbox" ng-model="item.done"></td>
                         <td><span ng-click='changeItem()' class="done-{{item.done}}">{{item.text}}</span></td>
                         <td><span ng-model="item.date">{{item.date}}</span></td>

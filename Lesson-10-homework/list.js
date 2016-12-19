@@ -29,7 +29,7 @@
     };
  
     $scope.customFilter = function(value) {
-
+        return value.done;
     }
 
     // Вычисляем количество оставшихся покупок.
