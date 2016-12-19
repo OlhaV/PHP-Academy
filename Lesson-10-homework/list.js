@@ -26,6 +26,8 @@
             $scope.items.push(newEntry);
         }
        $scope.itemText = '';
+       $scope.itemDate = '';
+       $scope.priority = '';
     };
  
     $scope.customFilter = function(value) {
