@@ -1,10 +1,27 @@
-﻿.done-true {
-  color: grey;
+﻿/** {
+  transition: 0.4s;
+}*/
+
+.done-true {
+  color: black;
 }
+
 .done-false {
   text-decoration: underline;
-  color: #1c6cbc;
+  color: #ffffff;
   cursor: pointer;
+}
+
+.btn-primary {
+  background-image: -webkit-linear-gradient(top, #5b92ff 0%, #3a6fd7 100%);
+  background-image: -o-linear-gradient(top, #5b92ff 0%, #3a6fd7 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#5b92ff), to(#3a6fd7));
+  background-image: linear-gradient(to bottom, #5b92ff 0%, #3a6fd7 100%);
+}
+
+.btn-primary:disabled, .btn-primary[disabled] {
+  background-color: #7f9ace;
+  border-color: #6b81aa;
 }
 
 @font-face {
@@ -13,13 +30,63 @@
   src: url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('fonts/glyphicons-halflings-regular.woff') format('woff'), url('fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
+table {
+  font-size: 16px;
+}
+
+table tr:nth-child(2n+1) {
+  background-color: #e5e8ed;
+}
+
+table tr:nth-child(2n+1):hover {
+  background-color: #7f9ace;
+}
+
+table thead th {
+  background-color: #3a6fd7;
+}
+
+table thead, table tr:nth-child(2n) {
+  background-color: #5b92ff;
+  color: #ffffff;
+}
+
+table thead, table tr:nth-child(2n):hover {
+  background-color: #3a6fd7;
+}
+
+table tbody tr:nth-child(2n) td:nth-child(2) {
+  background: #3a6fd7;
+}
+
+table tbody tr:nth-child(2n+1) td:nth-child(2) {
+  background: #7f9ace;
+}
+
+td, th {
+  text-align: center;
+  padding: 20px 5px;
+}
+
 .wrapper {
-  width: 400px; 
+  width: 600px; 
   margin: 0 auto;
 }
 
-.b-main__header, .b-main__rest {
+.b-main__header {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  color: #346689;
   margin: 10px 0; 
+}
+
+.b-main__remove, .b-main__done {
+  width: 80px;
+}
+
+.b-main__name, .b-main__date, .b-main__priority {
+  width: 150px;
 }
 
 .glyphicon {

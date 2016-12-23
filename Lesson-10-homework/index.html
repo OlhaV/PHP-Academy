@@ -1,19 +1,20 @@
 ﻿<!doctype html>
-<html ng-app>
+<html ng-app='toDoList'>
 <head>
-    <title>Angular</title>
+    <title>Task Manager</title>
     <script src="angular.js"></script>
     <script src="list.js"></script>
-    <link rel="stylesheet" href="list.css">
     <link href="bootstrap.css" rel="stylesheet" />
     <link href="bootstrap-theme.css" rel="stylesheet" />
+    <link rel="stylesheet" href="list.css">
+    <link rel="icon" type="image/png" href="img/favicon.ico">
 </head>
 <body>
     <div class='wrapper b-main'>
-        <h1 class='b-main__header'>List of tasks</h1>
+        <h1 class='b-main__header'>Task List</h1>
         <div class="panel" ng-controller="ListCtrl">
             <h3 class="b-main__rest"> Remain {{remain()}} of {{items.length}}</h4>
-            <table class="table table-striped">
+            <table>
                 <thead>
                     <tr>
                         <th>Status</th>
@@ -25,22 +26,22 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="item in items | orderBy:customFilter">
-                        <td><input class="checkbox-inline" type="checkbox" ng-model="item.done"></td>
-                        <td><span ng-click='changeItem()' class="done-{{item.done}}">{{item.text}}</span></td>
-                        <td><span ng-model="item.date">{{item.date}}</span></td>
-                        <td><span>{{item.priority}}</span></td>
-                        <td><span ng-click="removeItem()" class='glyphicon glyphicon-remove'></span></td>
+                        <td class='b-main__done'><input class="checkbox-inline" type="checkbox" ng-model="item.done"></td>
+                        <td class='b-main__name'><span ng-dblclick='changeItem()' class="done-{{item.done}}">{{item.text}}</span></td>
+                        <td class='b-main__date'><span ng-model="item.date">{{item.date}}</span></td>
+                        <td class='b-main__priority'><span>{{item.priority}}</span></td>
+                        <td class='b-main__remove'><span ng-click="removeItem()" class='glyphicon glyphicon-remove'></span></td>
                     </tr>
                 </tbody>
             </table>
             <form name="myForm" ng-submit="addItem()" novalidate>
-                <input class="form-control" type="text" class="form-control"
+                <input class="form-control" type="text" 
                     required ng-model="itemText" 
                     size="30" placeholder="Add task">
                 <span ng-show="myForm.itemText.$error.required"> 
                     Please insert something 
                 </span>
-                <input class="form-control" type="date" class="form-control"
+                <input class="form-control" type="date" 
                     required ng-model="itemDate" size="30">
                 <select class='form-control' ng-model='priority' required>
                     <option value="">Choose priority</option>
@@ -52,7 +53,7 @@
                     Please choose a date
                 </span>
                 <input class="btn btn-primary" ng-disabled='myForm.$invalid'
-                    type="submit" value="Добавить">
+                    type="submit" value="Add">
             </form>
         </div>
     </div>

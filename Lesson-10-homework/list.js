@@ -1,4 +1,5 @@
-﻿function ListCtrl($scope) {
+﻿angular.module('toDoList', [])
+.controller('ListCtrl', function($scope){
 
     $scope.items = localStorage.getItem('entries') ? 
     angular.fromJson(localStorage.getItem('entries')) : 
@@ -11,7 +12,6 @@
 
     $scope.$watch('items', function() {
     	localStorage.setItem('entries', angular.toJson($scope.items));
-    	console.log(angular.fromJson(localStorage['entries']));
     }, true);
 
     $scope.addItem = function () {
@@ -31,7 +31,7 @@
     };
  
     $scope.customFilter = function(value) {
-        return value.done || value.priority 
+        return !value.done || value.priority 
     }
 
     // Вычисляем количество оставшихся покупок.
@@ -54,4 +54,4 @@
     		$scope.items[this.$index].text = editedItem;
     	}
     }
-}
+});
