@@ -1,0 +1,25 @@
+form {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #e5e8ed;
+    padding-bottom: 20px;
+}
+
+.form-control {
+  margin: 30px 10px;
+  flex: 1 1 27%;
+  width: 100px;
+}
+
+form .ng-invalid.ng-dirty {
+    background-color: lightpink;
+}
+
+form .ng-valid.ng-dirty {
+    background-color: lightgreen;
+}
+
+span.itemNotChosen, span.dateNotChosen {
+    color: red;
+    font-weight: bold;
+}

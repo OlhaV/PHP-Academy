@@ -17,6 +17,8 @@
   background-image: -o-linear-gradient(top, #5b92ff 0%, #3a6fd7 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, from(#5b92ff), to(#3a6fd7));
   background-image: linear-gradient(to bottom, #5b92ff 0%, #3a6fd7 100%);
+  width: 200px;
+    margin: 0 auto;
 }
 
 .btn-primary:disabled, .btn-primary[disabled] {
@@ -106,21 +108,25 @@ td, th {
   content: "\e014";
 }
 
-.form-control {
-  margin: 10px 0;
+
+.addButton {
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    color: #ffffff;
+    font-size: 40px;
+    line-height: 1px;
+    background-color: #5b92ff;
 }
 
-form .ng-invalid.ng-dirty {
-    background-color: lightpink;
+
+.bottom_line {
+  margin-top: 20px;
+  text-align: right;
 }
 
-form .ng-valid.ng-dirty {
-    background-color: lightgreen;
-}
-/*первые два стиля применяются к элементам в которые пользователь внес изменения,
-валидация производится angular после каждого действия пользователя (после каждого введенного символа)*/
-span.itemNotChosen, span.dateNotChosen {
-    color: red;
-    font-weight: bold;
-}
 
+.bottom_line .addButton {
+  outline: none;
+}

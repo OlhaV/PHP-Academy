@@ -31,7 +31,7 @@
     };
  
     $scope.customFilter = function(value) {
-        return !value.done || value.priority 
+        return !value.done || value.priority
     }
 
     // Вычисляем количество оставшихся покупок.
@@ -54,4 +54,16 @@
     		$scope.items[this.$index].text = editedItem;
     	}
     }
-});
+
+    $scope.showForm = function() {
+        var formOpen = true;
+        console.log(formOpen);
+        return formOpen;
+    }
+})
+.directive('formElement', function(){
+    return {
+        restrict: "E",
+        templateUrl: 'form.html'
+    }
+})

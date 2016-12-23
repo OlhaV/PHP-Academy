@@ -2,23 +2,24 @@
 <html ng-app='toDoList'>
 <head>
     <title>Task Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="js/angular.js"></script>
     <script src="js/list.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css"  />
     <link rel="stylesheet" href="css/bootstrap-theme.css" />
     <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="form/form.css">
     <link rel="icon" type="image/png" href="img/favicon.ico">
 </head>
 <body>
     <div class='wrapper b-main'>
         <h1 class='b-main__header'>Task List</h1>
         <div class="panel" ng-controller="ListCtrl">
-            <h3 class="b-main__rest"> Remain {{remain()}} of {{items.length}}</h4>
             <table>
                 <thead>
                     <tr>
                         <th>Status</th>
-                        <th>Task</th>
+                        <th>Task ({{remain()}} of {{items.length}})</th>
                         <th>Due Date</th>
                         <th>Priority</th>
                         <th>Remove</th>
@@ -34,27 +35,11 @@
                     </tr>
                 </tbody>
             </table>
-            <form name="myForm" ng-submit="addItem()" novalidate>
-                <input class="form-control" type="text" 
-                    required ng-model="itemText" 
-                    size="30" placeholder="Add task">
-                <span ng-show="myForm.itemText.$error.required"> 
-                    Please insert something 
-                </span>
-                <input class="form-control" type="date" 
-                    required ng-model="itemDate" size="30">
-                <select class='form-control' ng-model='priority' required>
-                    <option value="">Choose priority</option>
-                    <option value="High">High</option>
-                    <option value="Regular">Regular</option>
-                    <option value="Low">Low</option>
-                </select>
-                <span ng-show="myform.itemDate.$error.required">
-                    Please choose a date
-                </span>
-                <input class="btn btn-primary" ng-disabled='myForm.$invalid'
-                    type="submit" value="Add">
-            </form>
+            <formElement ng-show="formOpen"></formElement>
+            <div class='bottom_line'>
+                <input type="button" class='addButton' value="&#43;"
+                ng-click='showForm()'>
+            </div>
         </div>
     </div>
 </body>
