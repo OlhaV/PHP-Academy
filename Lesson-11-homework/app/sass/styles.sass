@@ -1,3 +1,6 @@
+@import mixins
+@import vars
+
 body, html 
 	width: 100%
 	margin: 0 auto
@@ -10,9 +13,10 @@ body, html
     justify-content: space-around
 
 .city 
+	height: 100%
 	width: 300px 
 	margin: 20px auto
-	padding: 10px 20px 20px 
+	padding: 10px 20px 30px 
 	flex: 0 1 auto
 	margin-bottom: 20px
 	background: linear-gradient(to bottom, rgba(255,216,216,1) 0%,rgba(224,224,199,1) 52%,rgba(177,199,201,1) 100%)
@@ -21,15 +25,19 @@ body, html
 	font: bold 16px Arial, Helvetica, sans-serif
 	color: #312e2e
 	text-align: center
-	p:first-child
+	.place
 		font-size: 20px
-	p:nth-child(2)
+	.temp
 		font-size: 50px
 		margin: 10px 0
+		display: inline-block
 	img 
 		vertical-align: text-bottom
 	span 
 	    margin: 0 20px 0 4px
+	+r($mobLand)
+		margin: 2px auto
+		padding: 10px
 
 
 .buttons 
@@ -46,6 +54,11 @@ body, html
 		background-color: #b2c0e4
 		border-radius: 8px
 		border: 2px solid #606079
+	+r($mobLand)
+		position: fixed
+		bottom: 0
+		margin: 0 auto
+		text-align: end
 
 
 
