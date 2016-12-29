@@ -40,12 +40,12 @@ function Weather () {
 		newDiv.className = 'city';
 
 		newDiv.innerHTML = 
-		"<p class='place'> Place: " + name + "</p>" + 
-		"<p class='weather'> Weather: " + obj.weather[0].description + "</p>" + 
-		"<p class='temp'> Temperature: " + w.convertToCels(obj.main.temp) + "°C" + "</p>" + 
+		"<p class='place'>" + name + "</p>" + 
+		"<p class='temp'> " + w.convertToCels(obj.main.temp) + "°" + "</p>" + 
+		"<img src='" + 'http://openweathermap.org/img/w/' + obj.weather[0].icon + '.png' + "' alt='icon' class='icon'>" + 
+		"<p class='weather'> " + obj.weather[0].description + "</p>" + 
 		"<p class='wind'> Wind: " + obj.wind.speed + " meter/sec </p>" + 
-		"<p class='humid'> Humidity: " + obj.main.humidity + '%' + "</p>" + 
-		"<img src='" + 'http://openweathermap.org/img/w/' + obj.weather[0].icon + '.png' + "' alt='icon' class='icon'>"; 
+		"<p class='humid'> Humidity: " + obj.main.humidity + '%' + "</p>";
 
 		w.weatherInfoDiv.appendChild(newDiv);
 	}
@@ -111,8 +111,12 @@ function Weather () {
 
 	w.addCityBtn.onclick = function() {
 
-		var newCity = prompt('Please insert city', 'Kiev');
-		if (newCity) {
+		var newCity = prompt('Please insert city, only Latin letters applicable', 'Kiev');
+		var regE = /[A-Za-z]/;
+
+		console.log(regE.test(newCity))
+
+		if (newCity && regE.test(newCity)) {
 			var gUrl = googleUrl + newCity + googleKey;
 			var newCityWeather = null;
 
@@ -132,19 +136,28 @@ function Weather () {
 				cities.push(newCity);
 				localStorage.setItem('cities', cities.join());
 			}
+		} else {
+			alert('Please insert the correct value');
 		}
+
 	}
 
 	w.rmCityBtn.onclick = function(city) {
 		var cityToRemove = prompt('Which city do you want to remove?');
-		var cities = localStorage.getItem('cities').split(',');
 
-		for (var i = 0; i < cities.length; i++) {
-			if (cities[i] == cityToRemove) {
-				cities.splice(cities.indexOf(cityToRemove), 1);
-				localStorage.setItem('cities', cities);
-				w.weatherInfoDiv.innerHTML = '';
-				w.getWeatherFunc();
+		if (cityToRemove) {
+			var cities = localStorage.getItem('cities').split(',');
+
+			for (var i = 0; i < cities.length; i++) {
+				if (cities[i] == cityToRemove) {
+					cities.splice(cities.indexOf(cityToRemove), 1);
+					localStorage.setItem('cities', cities);
+					w.weatherInfoDiv.innerHTML = '';
+					w.getWeatherFunc();
+				} else {
+					alert('No such city');	
+					break;
+				}
 			}
 		}
 	}
