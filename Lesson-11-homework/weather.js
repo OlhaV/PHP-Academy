@@ -33,13 +33,14 @@ function Weather () {
 		
 	}
 
-	function displayFunc (obj) {
+	function displayFunc (obj, name) {
 
+		this.name = name;
 		var newDiv = document.createElement('div');
 		newDiv.className = 'city';
 
 		newDiv.innerHTML = 
-		"<p class='place'> Place: " + obj.name + "</p>" + 
+		"<p class='place'> Place: " + name + "</p>" + 
 		"<p class='weather'> Weather: " + obj.weather[0].description + "</p>" + 
 		"<p class='temp'> Temperature: " + w.convertToCels(obj.main.temp) + "°C" + "</p>" + 
 		"<p class='wind'> Wind: " + obj.wind.speed + " meter/sec </p>" + 
@@ -68,7 +69,7 @@ function Weather () {
 
 					var url = weatherUrl + 'lat=' + w.lat + '&lon=' + w.lon + appid;
 					sendRequest(url, curentLocationWeather, function(data) {
-						displayFunc(data);
+						displayFunc(data, data.name);
 						localStorage.setItem('cities', data.name);
 					});
 				});
@@ -82,17 +83,28 @@ function Weather () {
 	// in case there are items in localStorage, we get weather for each of them  
 		else {
 			var cities = localStorage.cities.split(',');
+			var name = null; 
 
 			for (var i = 0; i < cities.length; i++) {
 
-				var gUrl = googleUrl + cities[i] + googleKey;
-				var newCityWeather = null;
+				(function(name){
 
-				sendRequest(gUrl, newCityWeather, function(data){
-					var location = data.results[0].geometry.location;
-					var newUrl = weatherUrl + 'lat=' + location.lat + '&lon=' + location.lng + appid;
-					sendRequest(newUrl, data, displayFunc);
-				});
+					var gUrl = googleUrl + cities[i] + googleKey;
+					var newCityWeather = null;
+					name = cities[i];
+
+					sendRequest(gUrl, newCityWeather, function(data){
+						var location = data.results[0].geometry.location;
+						var newUrl = weatherUrl + 'lat=' + location.lat + '&lon=' + location.lng + appid;
+						sendRequest(newUrl, data, function(data){
+							displayFunc(data, name);
+						});
+					});
+
+
+				})(name);
+
+				
 			}
 		}
 	}
@@ -100,22 +112,26 @@ function Weather () {
 	w.addCityBtn.onclick = function() {
 
 		var newCity = prompt('Please insert city', 'Kiev');
-		var gUrl = googleUrl + newCity + googleKey;
-		var newCityWeather = null;
+		if (newCity) {
+			var gUrl = googleUrl + newCity + googleKey;
+			var newCityWeather = null;
 
-		sendRequest(gUrl, newCityWeather, function(data){
-			var location = data.results[0].geometry.location;
-			var newUrl = weatherUrl + 'lat=' + location.lat + '&lon=' + location.lng + appid;
-			sendRequest(newUrl, data, displayFunc);
-		});
+			sendRequest(gUrl, newCityWeather, function(data){
+				var location = data.results[0].geometry.location;
+				var newUrl = weatherUrl + 'lat=' + location.lat + '&lon=' + location.lng + appid;
+				sendRequest(newUrl, data, function(data){
+					displayFunc(data, newCity);
+				});
+			});
 
-		if (!localStorage.getItem('cities')) {
-			localStorage.setItem('cities', newCity);
-		} 
-		else {
-			var cities = localStorage.getItem('cities').split(',');
-			cities.push(newCity);
-			localStorage.setItem('cities', cities.join());
+			if (!localStorage.getItem('cities')) {
+				localStorage.setItem('cities', newCity);
+			} 
+			else {
+				var cities = localStorage.getItem('cities').split(',');
+				cities.push(newCity);
+				localStorage.setItem('cities', cities.join());
+			}
 		}
 	}
 
