@@ -7,7 +7,6 @@ function Weather () {
 	var googleKey = '&key=AIzaSyBHBjF5lDpw2tSXVJ6A1ra-RKT90ek5bvQ';
 
 	w.weatherInfoDiv = document.getElementsByClassName('weatherInfo')[0];
-	w.place = document.getElementsByClassName('place')[0];
 	w.getWeather = document.getElementsByClassName('getWeather')[0];
 	w.addCityBtn = document.getElementsByClassName('addCity')[0];
 	w.rmCityBtn = document.getElementsByClassName('rmCity')[0];
@@ -37,14 +36,13 @@ function Weather () {
 
 		var newDiv = document.createElement('div');
 		newDiv.className = 'city';
-
 		newDiv.innerHTML = 
-		"<p class='place'> Place: " + obj.name + "</p>" + 
-		"<p class='weather'> Weather: " + obj.weather[0].description + "</p>" + 
-		"<p class='temp'> Temperature: " + w.convertToCels(obj.main.temp) + "°C" + "</p>" + 
-		"<p class='wind'> Wind: " + obj.wind.speed + " meter/sec </p>" + 
-		"<p class='humid'> Humidity: " + obj.main.humidity + '%' + "</p>" + 
-		"<img src='" + 'http://openweathermap.org/img/w/' + obj.weather[0].icon + '.png' + "' alt='icon' class='icon'>"; 
+		"<p> Place: " + obj.name + "</p>" + 
+		"<p> Weather: " + obj.weather[0].description + "</p>" + 
+		"<p> Temperature: " + w.convertToCels(obj.main.temp) + "°C" + "</p>" + 
+		"<p> Wind: " + obj.wind.speed + " meter/sec </p>" + 
+		"<p> Humidity: " + obj.main.humidity + '%' + "</p>" + 
+		"<img src='" + 'http://openweathermap.org/img/w/' + obj.weather[0].icon + '.png' + "' alt='icon'>"; 
 
 		w.weatherInfoDiv.appendChild(newDiv);
 	}
@@ -58,42 +56,33 @@ function Weather () {
 
 	w.getWeatherFunc = function() {
 
-	// in case localStorage is empty, we get weather for current user's location 
-		if(!localStorage.cities) {
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(function(location){
-					w.lat = location.coords.latitude;
-					w.lon = location.coords.longitude;
-					var curentLocationWeather = null;
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(location){
+				w.lat = location.coords.latitude;
+				w.lon = location.coords.longitude;
 
+				if(!localStorage.cities) {
 					var url = weatherUrl + 'lat=' + w.lat + '&lon=' + w.lon + appid;
-					sendRequest(url, curentLocationWeather, function(data) {
-						displayFunc(data);
-						localStorage.setItem('cities', data.name);
-					});
-				});
-			} 
+					sendRequest(url, w.weather, displayFunc);
+				} else {
+					var cities = localStorage.cities.split(',');
+					console.log(cities);
+					for (var i = 0; i < cities.length; i++) {
 
-			else {
-				alert('Browser could not find your current location');
-		 	}
-		}
+						var gUrl = googleUrl + cities[i] + googleKey;
+						var newCityWeather = null;
+						
+						sendRequest(gUrl, newCityWeather, function(data){
+							var location = data.results[0].geometry.location;
+							var newUrl = weatherUrl + 'lat=' + location.lat + '&lon=' + location.lng + appid;
+							sendRequest(newUrl, data, displayFunc);
+						});
+					}
+				}
+			});
 
-	// in case there are items in localStorage, we get weather for each of them  
-		else {
-			var cities = localStorage.cities.split(',');
-
-			for (var i = 0; i < cities.length; i++) {
-
-				var gUrl = googleUrl + cities[i] + googleKey;
-				var newCityWeather = null;
-
-				sendRequest(gUrl, newCityWeather, function(data){
-					var location = data.results[0].geometry.location;
-					var newUrl = weatherUrl + 'lat=' + location.lat + '&lon=' + location.lng + appid;
-					sendRequest(newUrl, data, displayFunc);
-				});
-			}
+		} else {
+			alert('Browser could not find your current location');
 		}
 	}
 
@@ -116,6 +105,8 @@ function Weather () {
 			var cities = localStorage.getItem('cities').split(',');
 			cities.push(newCity);
 			localStorage.setItem('cities', cities.join());
+
+			console.log(localStorage);
 		}
 	}
 
