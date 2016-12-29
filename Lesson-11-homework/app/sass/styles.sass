@@ -1,0 +1,51 @@
+body, html 
+	width: 100%
+	margin: 0 auto
+	background-color: #988383
+	transition: 0.4s
+
+.weatherInfo
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-around
+
+.city 
+	width: 300px 
+	margin: 20px auto
+	padding: 10px 20px 20px 
+	flex: 0 1 auto
+	margin-bottom: 20px
+	background: linear-gradient(to bottom, rgba(255,216,216,1) 0%,rgba(224,224,199,1) 52%,rgba(177,199,201,1) 100%)
+	border: 2px solid #423333
+	border-radius: 10px
+	font: bold 16px Arial, Helvetica, sans-serif
+	color: #312e2e
+	text-align: center
+	p:first-child
+		font-size: 20px
+	p:nth-child(2)
+		font-size: 50px
+		margin: 10px 0
+	img 
+		vertical-align: text-bottom
+	span 
+	    margin: 0 20px 0 4px
+
+
+.buttons 
+	width: 300px 
+	margin: 20px auto
+	text-align: center
+	&:focus
+		outline: none
+	input
+		width: 120px
+		font: bold 16px Arial, Helvetica, sans-serif
+		padding: 10px
+		margin: 10px 
+		background-color: #b2c0e4
+		border-radius: 8px
+		border: 2px solid #606079
+
+
+

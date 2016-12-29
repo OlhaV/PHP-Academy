@@ -33,18 +33,21 @@ function Weather () {
 		
 	}
 
-	function displayFunc (obj) {
+	function displayFunc (obj, name) {
 
+		this.name = name;
 		var newDiv = document.createElement('div');
 		newDiv.className = 'city';
 
 		newDiv.innerHTML = 
-		"<p class='place'> Place: " + obj.name + "</p>" + 
-		"<p class='weather'> Weather: " + obj.weather[0].description + "</p>" + 
-		"<p class='temp'> Temperature: " + w.convertToCels(obj.main.temp) + "°C" + "</p>" + 
-		"<p class='wind'> Wind: " + obj.wind.speed + " meter/sec </p>" + 
-		"<p class='humid'> Humidity: " + obj.main.humidity + '%' + "</p>" + 
-		"<img src='" + 'http://openweathermap.org/img/w/' + obj.weather[0].icon + '.png' + "' alt='icon' class='icon'>"; 
+		"<p class='place'>" + name + "</p>" + 
+		"<p class='temp'> " + w.convertToCels(obj.main.temp) + "°" + "</p>" + 
+		"<img src='http://openweathermap.org/img/w/" + obj.weather[0].icon + '.png' + "' alt='icon' class='icon weather'>" + 
+		"<p class='weather'> " + obj.weather[0].description + "</p>" + 
+		"<img src='img/wind.png' alt='icon' class='icon wind'>" + 
+		"<span class='wind'> " + obj.wind.speed + " m/s </span>" + 
+		"<img src='img/humidity.png' alt='icon' class='icon humidity'>" + 
+		"<span class='humid'> " + obj.main.humidity + '%' + "</span>";
 
 		w.weatherInfoDiv.appendChild(newDiv);
 	}
@@ -68,7 +71,7 @@ function Weather () {
 
 					var url = weatherUrl + 'lat=' + w.lat + '&lon=' + w.lon + appid;
 					sendRequest(url, curentLocationWeather, function(data) {
-						displayFunc(data);
+						displayFunc(data, data.name);
 						localStorage.setItem('cities', data.name);
 					});
 				});
@@ -82,62 +85,86 @@ function Weather () {
 	// in case there are items in localStorage, we get weather for each of them  
 		else {
 			var cities = localStorage.cities.split(',');
+			var name = null; 
 
 			for (var i = 0; i < cities.length; i++) {
 
-				var gUrl = googleUrl + cities[i] + googleKey;
-				var newCityWeather = null;
+				(function(name){
 
-				sendRequest(gUrl, newCityWeather, function(data){
-					var location = data.results[0].geometry.location;
-					var newUrl = weatherUrl + 'lat=' + location.lat + '&lon=' + location.lng + appid;
-					sendRequest(newUrl, data, displayFunc);
-				});
+					var gUrl = googleUrl + cities[i] + googleKey;
+					var newCityWeather = null;
+					name = cities[i];
+
+					sendRequest(gUrl, newCityWeather, function(data){
+						var location = data.results[0].geometry.location;
+						var newUrl = weatherUrl + 'lat=' + location.lat + '&lon=' + location.lng + appid;
+						sendRequest(newUrl, data, function(data){
+							displayFunc(data, name);
+						});
+					});
+
+
+				})(name);
+
+				
 			}
 		}
 	}
 
 	w.addCityBtn.onclick = function() {
 
-		var newCity = prompt('Please insert city', 'Kiev');
-		var gUrl = googleUrl + newCity + googleKey;
-		var newCityWeather = null;
+		var newCity = prompt('Please insert city, only Latin letters applicable', 'Kiev');
+		var regE = /[A-Za-z]/;
 
-		sendRequest(gUrl, newCityWeather, function(data){
-			var location = data.results[0].geometry.location;
-			var newUrl = weatherUrl + 'lat=' + location.lat + '&lon=' + location.lng + appid;
-			sendRequest(newUrl, data, displayFunc);
-		});
+		console.log(regE.test(newCity))
 
-		if (!localStorage.getItem('cities')) {
-			localStorage.setItem('cities', newCity);
-		} 
-		else {
-			var cities = localStorage.getItem('cities').split(',');
-			cities.push(newCity);
-			localStorage.setItem('cities', cities.join());
+		if (newCity && regE.test(newCity)) {
+			var gUrl = googleUrl + newCity + googleKey;
+			var newCityWeather = null;
+
+			sendRequest(gUrl, newCityWeather, function(data){
+				var location = data.results[0].geometry.location;
+				var newUrl = weatherUrl + 'lat=' + location.lat + '&lon=' + location.lng + appid;
+				sendRequest(newUrl, data, function(data){
+					displayFunc(data, newCity);
+				});
+			});
+
+			if (!localStorage.getItem('cities')) {
+				localStorage.setItem('cities', newCity);
+			} 
+			else {
+				var cities = localStorage.getItem('cities').split(',');
+				cities.push(newCity);
+				localStorage.setItem('cities', cities.join());
+			}
+		} else {
+			alert('Please insert the correct value');
 		}
+
 	}
 
 	w.rmCityBtn.onclick = function(city) {
 		var cityToRemove = prompt('Which city do you want to remove?');
-		var cities = localStorage.getItem('cities').split(',');
 
-		for (var i = 0; i < cities.length; i++) {
-			if (cities[i] == cityToRemove) {
-				cities.splice(cities.indexOf(cityToRemove), 1);
-				localStorage.setItem('cities', cities);
-				w.weatherInfoDiv.innerHTML = '';
-				w.getWeatherFunc();
+		if (cityToRemove) {
+			var cities = localStorage.getItem('cities').split(',');
+
+			for (var i = 0; i < cities.length; i++) {
+				if (cities[i] == cityToRemove) {
+					cities.splice(cities.indexOf(cityToRemove), 1);
+					localStorage.setItem('cities', cities);
+					w.weatherInfoDiv.innerHTML = '';
+					w.getWeatherFunc();
+				} 
+				// else {
+				// 	alert('No such city');
+				// }
 			}
 		}
 	}
 
 	window.onload = w.getWeatherFunc;
-
-	setInterval(function() {
-		w.getWeatherFunc();
-	}, 900000);
 
 }
 
