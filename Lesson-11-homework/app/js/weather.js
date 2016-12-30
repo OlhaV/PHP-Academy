@@ -25,7 +25,6 @@ function Weather () {
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
 					data = JSON.parse(request.responseText);
-					console.log(data);
 					callback(data);
 			} else {
 				console.log(request.status + ': ' + request.statusText);
@@ -43,7 +42,7 @@ function Weather () {
 		newDiv.innerHTML = 
 		"<p class='place'>" + name + "</p>" + 
 		"<p class='temp'> " + w.convertToCels(obj.main.temp) + "°" + "</p>" + 
-		"<img src='http://openweathermap.org/img/w/" + obj.weather[0].icon + '.png' + "' alt='icon' class='icon weather'>" + 
+		"<img src='http://openweathermap.org/img/w/" + obj.weather[0].icon + '.png' + "' alt='icon' class='icon_weather'>" + 
 		"<p class='weather'> " + obj.weather[0].description + "</p>" + 
 		"<img src='img/wind.png' alt='icon' class='icon wind'>" + 
 		"<span class='wind'> " + obj.wind.speed + " m/s </span>" + 

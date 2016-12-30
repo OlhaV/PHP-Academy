@@ -1,6 +1,9 @@
 @import mixins
 @import vars
 
+*
+	transition: 0.4s
+
 body, html 
 	width: 100%
 	height: 100%
@@ -23,12 +26,13 @@ body, html
 	flex: 0 1 auto
 	margin-bottom: 20px
 	background: rgba($background, 0.3)
-	// linear-gradient(to bottom, rgba(255,216,216,1) 0%,rgba(224,224,199,1) 52%,rgba(177,199,201,1) 100%)
 	border: 2px solid #d7d7e5
 	border-radius: 10px
 	font: bold 16px Arial, Helvetica, sans-serif
 	color: #ffffff
 	text-align: center
+	&:hover
+		background: rgba($background, 0.5)
 	.place
 		font-size: 20px
 	.temp
@@ -41,7 +45,7 @@ body, html
 		vertical-align: text-bottom
 	span 
 	    margin: 0 20px 0 4px
-	+r($mobLand)
+	+r($mobPort)
 		margin: 8px auto 2px
 		padding: 10px
 		width: 80%
@@ -53,6 +57,12 @@ body, html
 	text-align: center
 	&:focus
 		outline: none
+	+r($mobLand)
+		position: fixed
+		bottom: 0
+		margin: 0 auto
+		text-align: center
+		width: 100%
 	input
 		width: 120px
 		color: #ffffff
@@ -62,12 +72,24 @@ body, html
 		background-color: rgba($background, 0.3)
 		border-radius: 8px
 		border: 2px solid #d7d7e5
-	+r($mobLand)
-		position: fixed
-		bottom: 0
-		margin: 0 auto
-		text-align: center
-		width: 100%
+		&:hover
+			background-color: rgba($background, 0.6)
+		+r($mobLand)
+			width: 50px
+			height: 50px
+			border-radius: 50px
 
-
+// .buttons__mobile
+// 	+r($mobLand)
+// 		display: block
+// 		position: fixed
+// 		bottom: 0
+// 	input
+// 		width: 50px
+// 		height: 50px
+// 		background-color: rgba($background, 0.3)
+// 		border-radius: 50px
+// 		border: 2px solid #d7d7e5
+// 		font: bold 25px Arial, Helvetica, sans-serif
+// 		color: #ffffff
 
