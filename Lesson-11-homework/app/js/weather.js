@@ -102,11 +102,7 @@ function Weather () {
 							displayFunc(data, name);
 						});
 					});
-
-
-				})(name);
-
-				
+				})(name);				
 			}
 		}
 	}
@@ -115,8 +111,6 @@ function Weather () {
 
 		var newCity = prompt('Please insert city, only Latin letters applicable', 'Kiev');
 		var regE = /[A-Za-z]/;
-
-		console.log(regE.test(newCity))
 
 		if (newCity && regE.test(newCity)) {
 			var gUrl = googleUrl + newCity + googleKey;
@@ -128,20 +122,17 @@ function Weather () {
 				sendRequest(newUrl, data, function(data){
 					displayFunc(data, newCity);
 				});
+
+				var c = localStorage.getItem('cities');
+				c = c ? c.split(",") : [];
+				c.push(data.name);
+				localStorage.setItem("cities", c.join());
+
 			});
 
-			if (!localStorage.getItem('cities')) {
-				localStorage.setItem('cities', newCity);
-			} 
-			else {
-				var cities = localStorage.getItem('cities').split(',');
-				cities.push(newCity);
-				localStorage.setItem('cities', cities.join());
-			}
 		} else {
 			alert('Please insert the correct value');
 		}
-
 	}
 
 	w.rmCityBtn.onclick = function(city) {
@@ -157,9 +148,6 @@ function Weather () {
 					w.weatherInfoDiv.innerHTML = '';
 					w.getWeatherFunc();
 				} 
-				// else {
-				// 	alert('No such city');
-				// }
 			}
 		}
 	}
