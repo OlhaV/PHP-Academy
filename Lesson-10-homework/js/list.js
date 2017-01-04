@@ -44,14 +44,14 @@
         return $scope.items.length - count;
     };
 
-    $scope.removeItem = function() {
-        $scope.items.splice(this.$index, 1);
+    $scope.removeItem = function(item) {
+        $scope.items.splice($scope.items.indexOf(item), 1); 
     }
 
     $scope.changeItem = function() {
     	var editedItem = prompt('Do you want to change this item?', $scope.items[this.$index].text);
     	if(editedItem) {
-    		$scope.items[this.$index].text = editedItem;
+    		$scope.items[$scope.items.indexOf(item)].text = editedItem;
     	}
     }
 
@@ -60,10 +60,12 @@
         console.log(formOpen);
         return formOpen;
     }
+
+
 })
-.directive('formElement', function(){
-    return {
-        restrict: "E",
-        templateUrl: 'form.html'
-    }
-})
+// .directive('formElement', function(){
+//     return {
+//         restrict: "E",
+//         templateUrl: 'form/form.html'
+//     }
+// })

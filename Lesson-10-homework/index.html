@@ -31,11 +31,35 @@
                         <td class='b-main__name'><span ng-dblclick='changeItem()' class="done-{{item.done}}">{{item.text}}</span></td>
                         <td class='b-main__date'><span ng-model="item.date">{{item.date}}</span></td>
                         <td class='b-main__priority'><span>{{item.priority}}</span></td>
-                        <td class='b-main__remove'><span ng-click="removeItem()" class='glyphicon glyphicon-remove'></span></td>
+                        <td class='b-main__remove'><span ng-click="removeItem(item)" class='glyphicon glyphicon-remove'></span></td>
                     </tr>
                 </tbody>
             </table>
-            <formElement ng-show="formOpen"></formElement>
+            <form name="myForm" 
+            ng-submit="addItem()" 
+            ng-show="formOpen"
+            class="ng-hide"
+            novalidate>
+                <input class="form-control" type="text" 
+                required ng-model="itemText" 
+                size="30" placeholder="Add task">
+                <span ng-show="myForm.itemText.$error.required"> 
+                    Please insert something
+                </span>
+                <input class="form-control" type="date" 
+                required ng-model="itemDate" size="30">
+                <select class='form-control' ng-model='priority' required>
+                  <option value="">Choose priority</option>
+                  <option value="High">High</option>
+                  <option value="Regular">Regular</option>
+                  <option value="Low">Low</option>
+                </select>
+                <span ng-show="myform.itemDate.$error.required">
+                    Please choose a date
+                </span>
+                <input class="btn btn-primary" ng-disabled='myForm.$invalid'
+                type="submit" value="Add">
+            </form>
             <div class='bottom_line'>
                 <input type="button" class='addButton' value="&#43;"
                 ng-click='showForm()'>
