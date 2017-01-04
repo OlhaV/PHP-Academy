@@ -55,17 +55,5 @@
     	}
     }
 
-    $scope.showForm = function() {
-        var formOpen = true;
-        console.log(formOpen);
-        return formOpen;
-    }
-
 
 })
-// .directive('formElement', function(){
-//     return {
-//         restrict: "E",
-//         templateUrl: 'form/form.html'
-//     }
-// })

@@ -8,14 +8,20 @@
 
       <div class="modal-body">
         <form name="myForm" ng-submit="addItem()" novalidate>
-          <input class="form-control" type="text" 
-              required ng-model="itemText" 
-              size="30" placeholder="Add task">
+          <input class="form-control" 
+              type="text" 
+              ng-required="true" 
+              ng-model="itemText" 
+              size="30" 
+              placeholder="Add task">
           <span ng-show="myForm.itemText.$error.required"> 
               Please insert something 
           </span>
-          <input class="form-control" type="date" 
-              required ng-model="itemDate" size="30">
+          <input class="form-control" 
+            type="date" 
+            ng-required="true" 
+            ng-model="itemDate" 
+            size="30">
           <select class='form-control' ng-model='priority' required>
               <option value="">Choose priority</option>
               <option value="High">High</option>

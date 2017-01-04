@@ -1,6 +1,11 @@
-﻿/** {
-  transition: 0.4s;
-}*/
+﻿html, body {
+  height: 100%;
+}
+
+body {  
+  position: relative;
+  background: radial-gradient(ellipse at center, #dbdbdb 0%,#c9c9c9 29%,#c1c1c1 67%,#c4c4c4 100%);
+}
 
 .done-true {
   color: black;
@@ -34,6 +39,7 @@
 
 table {
   font-size: 16px;
+  box-shadow: 0 0 10px 5px gray
 }
 
 table tr:nth-child(2n+1) {
@@ -74,6 +80,12 @@ td, th {
 .wrapper {
   width: 600px; 
   margin: 0 auto;
+  overflow: visible;
+}
+
+.wrapper h1 {
+  margin: 15px !important;
+  text-shadow: 3px 2px #9e8a8a;
 }
 
 .b-main__header {
@@ -108,7 +120,6 @@ td, th {
 .glyphicon-remove:before {
   content: "\e014";
 }
-
 
 .addButton {
     border-radius: 50px;

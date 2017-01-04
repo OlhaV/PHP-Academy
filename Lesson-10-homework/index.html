@@ -13,8 +13,8 @@
 </head>
 <body>
     <div class='wrapper b-main'>
-        <h1 class='b-main__header'>Task List</h1>
-        <div class="panel" ng-controller="ListCtrl">
+        <h1 class='b-main__header'>Task Manager</h1>
+        <div ng-controller="ListCtrl">
             <table>
                 <thead>
                     <tr>
@@ -34,35 +34,46 @@
                         <td class='b-main__remove'><span ng-click="removeItem(item)" class='glyphicon glyphicon-remove'></span></td>
                     </tr>
                 </tbody>
-            </table>
-            <form name="myForm" 
-            ng-submit="addItem()" 
-            ng-show="formOpen"
-            class="ng-hide"
-            novalidate>
-                <input class="form-control" type="text" 
-                required ng-model="itemText" 
-                size="30" placeholder="Add task">
-                <span ng-show="myForm.itemText.$error.required"> 
-                    Please insert something
-                </span>
-                <input class="form-control" type="date" 
-                required ng-model="itemDate" size="30">
-                <select class='form-control' ng-model='priority' required>
-                  <option value="">Choose priority</option>
-                  <option value="High">High</option>
-                  <option value="Regular">Regular</option>
-                  <option value="Low">Low</option>
-                </select>
-                <span ng-show="myform.itemDate.$error.required">
-                    Please choose a date
-                </span>
-                <input class="btn btn-primary" ng-disabled='myForm.$invalid'
-                type="submit" value="Add">
-            </form>
+            </table>   
+            <div ng-show="formOpen" class='formDiv'>
+                <form name="myForm" 
+                ng-submit="addItem()" 
+                novalidate>
+                    <input class="form-control" type="text" 
+                        ng-required='required' ng-model="itemText" 
+                        size="30" placeholder="Add task">
+                    <span 
+                        on-click="formOpen=false" 
+                        class='glyphicon glyphicon-remove'>
+                    </span>
+                    <span ng-show="myForm.itemText.$error.required">
+                        Please insert something
+                    </span>
+                    <input class="form-control"  
+                        ng-required='required' 
+                        ng-model="itemDate" 
+                        size="30" type="date">
+                    <select class='form-control' ng-model='priority'    
+                        ng-required='required'>
+                      <option value="">Choose priority</option>
+                      <option value="High">High</option>
+                      <option value="Regular">Regular</option>
+                      <option value="Low">Low</option>
+                    </select>
+                    <span 
+                        ng-show="myform.$invalid">
+                        Please choose a date
+                    </span>
+                    <input 
+                        class="btn btn-primary" 
+                        ng-disabled='myForm.$invalid'
+                        type="submit" value="Add"
+                        on-click="formOpen=false">
+                </form>
+            </div>
             <div class='bottom_line'>
                 <input type="button" class='addButton' value="&#43;"
-                ng-click='showForm()'>
+                ng-click='formOpen=true'>
             </div>
         </div>
     </div>
