@@ -4,17 +4,20 @@
 
 body {  
   position: relative;
-  background: radial-gradient(ellipse at center, #dbdbdb 0%,#c9c9c9 29%,#c1c1c1 67%,#c4c4c4 100%);
+  background: #e8dbdb;
 }
 
 .done-true {
-  color: black;
+  color: rgb(44, 44, 44);
+  text-decoration: line-through;
+  font-size: 20px;
 }
 
 .done-false {
   text-decoration: underline;
-  color: #ffffff;
+  color: #0b0985;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .btn-primary {
@@ -23,7 +26,7 @@ body {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#5b92ff), to(#3a6fd7));
   background-image: linear-gradient(to bottom, #5b92ff 0%, #3a6fd7 100%);
   width: 200px;
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .btn-primary:disabled, .btn-primary[disabled] {
@@ -37,55 +40,49 @@ body {
   src: url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('fonts/glyphicons-halflings-regular.woff') format('woff'), url('fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
-table {
-  font-size: 16px;
-  box-shadow: 0 0 10px 5px gray
-}
-
-table tr:nth-child(2n+1) {
-  background-color: #e5e8ed;
-}
-
-table tr:nth-child(2n+1):hover {
-  background-color: #7f9ace;
-}
-
-
-table thead th {
-  background-color: #3a6fd7;
-}
-
-table thead, table tr:nth-child(2n) {
-  background-color: #5b92ff;
-  color: #ffffff;
-}
-
-table thead, table tr:nth-child(2n):hover {
-  background-color: #3a6fd7;
-}
-
-table tbody tr:nth-child(2n) td:nth-child(2) {
-  background: #3a6fd7;
-}
-
-table tbody tr:nth-child(2n+1) td:nth-child(2) {
-  background: #7f9ace;
-}
-
-td, th {
-  text-align: center;
-  padding: 20px 5px;
-}
-
 .wrapper {
-  width: 600px; 
+  width: 400px; 
   margin: 0 auto;
-  overflow: visible;
 }
 
-.wrapper h1 {
-  margin: 15px !important;
-  text-shadow: 3px 2px #9e8a8a;
+.table {
+  font-size: 16px;
+  box-shadow: 0 0 10px 5px gray;
+  background-color: #cfcfe6;
+  padding: 20px;
+  margin: 20px auto;
+}
+
+.table h2 {
+  margin-top: 0;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+.table .item {
+  margin: 20px 10px;
+}
+
+.table .checkbox {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.table .itemDate {
+  margin-left: 29px;
+  font-size: 13px;
+}
+
+.table .itemConfig {
+  float: right;
+  position: relative;
+  top: 5px;
+}
+
+.table .itemConfig .priority {
+  margin-right: 20px;
 }
 
 .b-main__header {
@@ -130,6 +127,7 @@ td, th {
     font-size: 40px;
     line-height: 1px;
     background-color: #5b92ff;
+    box-shadow: 0 0 8px 3px grey; 
 }
 
 

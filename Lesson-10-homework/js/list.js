@@ -7,7 +7,7 @@
       { text: 'Buy chocolate', done: false, date: "2016-12-12", priority: 'High'},
       { text: 'Pay bills', done: false, date: "2016-12-16", priority: 'High'},
       { text: 'Visit granpa', done: false, date: "2016-12-09", priority: 'Low'},
-      { text: 'Call mom', done: false, date: "2016-12-16", priority: 'Regular'}
+      { text: 'Call mom', done: false, date: "2016-12-16", priority: 'Middle'}
     ];
 
     $scope.$watch('items', function() {
@@ -48,9 +48,10 @@
         $scope.items.splice($scope.items.indexOf(item), 1); 
     }
 
-    $scope.changeItem = function() {
+    $scope.changeItem = function(item) {
     	var editedItem = prompt('Do you want to change this item?', $scope.items[this.$index].text);
     	if(editedItem) {
+            console.log($scope.items.indexOf(item));
     		$scope.items[$scope.items.indexOf(item)].text = editedItem;
     	}
     }

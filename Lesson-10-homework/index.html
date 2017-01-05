@@ -13,34 +13,45 @@
 </head>
 <body>
     <div class='wrapper b-main'>
-        <h1 class='b-main__header'>Task Manager</h1>
         <div ng-controller="ListCtrl">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Status</th>
-                        <th>Task ({{remain()}} of {{items.length}})</th>
-                        <th>Due Date</th>
-                        <th>Priority</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in items | orderBy:customFilter">
-                        <td class='b-main__done'><input class="checkbox-inline" type="checkbox" ng-model="item.done"></td>
-                        <td class='b-main__name'><span ng-dblclick='changeItem()' class="done-{{item.done}}">{{item.text}}</span></td>
-                        <td class='b-main__date'><span ng-model="item.date">{{item.date}}</span></td>
-                        <td class='b-main__priority'><span>{{item.priority}}</span></td>
-                        <td class='b-main__remove'><span ng-click="removeItem(item)" class='glyphicon glyphicon-remove'></span></td>
-                    </tr>
-                </tbody>
-            </table>   
+            <div class='table'>
+                <h2> Tasks ({{remain()}} of {{items.length}}) </h2>
+                <div class='item' 
+                    ng-repeat="item in items | orderBy:customFilter">
+                    <input 
+                        class="checkbox-inline checkbox" 
+                        type="checkbox" 
+                        ng-model="item.done">
+                    <span 
+                        class="done-{{item.done}}">{{item.text}}
+                    </span>
+                    <div class='itemConfig'>
+                        <span class='priority'>{{item.priority}}</span>
+                        <span 
+                            ng-click="removeItem(item)" 
+                            class='glyphicon glyphicon-remove'>
+                        </span>
+                        <span 
+                            ng-click="changeItem(item)" 
+                            class='glyphicon glyphicon-pencil'>
+                        </span>
+                    </div>
+                    <p class='itemDate'
+                        ng-model="item.date">{{item.date}}
+                    </p>
+                </div>
+                <div class='bottom_line'>
+                    <input type="button" class='addButton' value="&#43;"
+                ng-click='formOpen=true'>
+                </div>
+            </div>
+        
             <div ng-show="formOpen" class='formDiv'>
                 <form name="myForm" 
                 ng-submit="addItem()" 
                 novalidate>
                     <input class="form-control" type="text" 
-                        ng-required='required' ng-model="itemText" 
+                        required ng-model="itemText" 
                         size="30" placeholder="Add task">
                     <span 
                         on-click="formOpen=false" 
@@ -50,11 +61,11 @@
                         Please insert something
                     </span>
                     <input class="form-control"  
-                        ng-required='required' 
+                        required 
                         ng-model="itemDate" 
                         size="30" type="date">
                     <select class='form-control' ng-model='priority'    
-                        ng-required='required'>
+                        required>
                       <option value="">Choose priority</option>
                       <option value="High">High</option>
                       <option value="Regular">Regular</option>
@@ -71,10 +82,7 @@
                         on-click="formOpen=false">
                 </form>
             </div>
-            <div class='bottom_line'>
-                <input type="button" class='addButton' value="&#43;"
-                ng-click='formOpen=true'>
-            </div>
+        
         </div>
     </div>
 </body>
