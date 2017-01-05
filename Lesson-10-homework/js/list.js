@@ -4,10 +4,10 @@
     $scope.items = localStorage.getItem('entries') ? 
     angular.fromJson(localStorage.getItem('entries')) : 
     [
-      { text: 'Buy chocolate', done: false, date: "2016-12-12", priority: 'High'},
-      { text: 'Pay bills', done: false, date: "2016-12-16", priority: 'High'},
-      { text: 'Visit granpa', done: false, date: "2016-12-09", priority: 'Low'},
-      { text: 'Call mom', done: false, date: "2016-12-16", priority: 'Middle'}
+      { text: 'Buy chocolate', done: false, date: "2016-12-12", priority: 'high'},
+      { text: 'Pay bills', done: false, date: "2016-12-16", priority: 'high'},
+      { text: 'Visit granpa', done: false, date: "2016-12-09", priority: 'low'},
+      { text: 'Call mom', done: false, date: "2016-12-16", priority: 'medium'}
     ];
 
     $scope.$watch('items', function() {

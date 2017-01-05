@@ -25,8 +25,9 @@
                     <span 
                         class="done-{{item.done}}">{{item.text}}
                     </span>
+                    <span class='priority {{item.priority}}'></span>
                     <div class='itemConfig'>
-                        <span class='priority'>{{item.priority}}</span>
+                        
                         <span 
                             ng-click="removeItem(item)" 
                             class='glyphicon glyphicon-remove'>

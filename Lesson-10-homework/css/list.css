@@ -81,8 +81,24 @@ body {
   top: 5px;
 }
 
-.table .itemConfig .priority {
-  margin-right: 20px;
+.priority.high, .priority.low, .priority.medium {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.priority.low {
+  background: url('../img/low.png') no-repeat;
+}
+
+.priority.medium {
+  background: url('../img/medium.png') no-repeat;
+}
+
+.priority.high {
+  background: url('../img/high.png') no-repeat;
 }
 
 .b-main__header {
