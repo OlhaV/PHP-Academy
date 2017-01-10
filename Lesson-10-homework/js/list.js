@@ -4,10 +4,10 @@
     $scope.items = localStorage.getItem('entries') ? 
     angular.fromJson(localStorage.getItem('entries')) : 
     [
-      { text: 'Buy chocolate', done: false, date: "2016-12-12", priority: 'high'},
-      { text: 'Pay bills', done: false, date: "2016-12-16", priority: 'high'},
-      { text: 'Visit granpa', done: false, date: "2016-12-09", priority: 'low'},
-      { text: 'Call mom', done: false, date: "2016-12-16", priority: 'medium'}
+      { text: 'Buy chocolate', done: false, date: "2017-01-12", priority: 'High'},
+      { text: 'Pay bills', done: false, date: "2017-02-16", priority: 'High'},
+      { text: 'Visit granpa', done: false, date: "2017-02-09", priority: 'Low'},
+      { text: 'Call mom', done: false, date: "2017-01-07", priority: 'Medium'}
     ];
 
     $scope.$watch('items', function() {
@@ -30,11 +30,10 @@
        $scope.priority = '';
     };
  
-    $scope.customFilter = function(value) {
+    $scope.customFilter = function(value) { 
         return !value.done || value.priority
     }
 
-    // Вычисляем количество оставшихся покупок.
     $scope.remain = function () {
         var count = 0;
         angular.forEach($scope.items, function(item) {
@@ -42,16 +41,23 @@
         });
 
         return $scope.items.length - count;
-    };
+    }
+
+    $scope.checkDeadline = function(item) {
+        var today = new Date();
+        var date = new Date($scope.items[$scope.items.indexOf(item)].date.split('-'));
+
+        var className =  date.getTime() < today.getTime() ? 'overdue' : 'due';
+        return className;
+    }
 
     $scope.removeItem = function(item) {
         $scope.items.splice($scope.items.indexOf(item), 1); 
     }
 
     $scope.changeItem = function(item) {
-    	var editedItem = prompt('Do you want to change this item?', $scope.items[this.$index].text);
+    	var editedItem = prompt('Do you want to change this item?', $scope.items[$scope.items.indexOf(item)].text);
     	if(editedItem) {
-            console.log($scope.items.indexOf(item));
     		$scope.items[$scope.items.indexOf(item)].text = editedItem;
     	}
     }

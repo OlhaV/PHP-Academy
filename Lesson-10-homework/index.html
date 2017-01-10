@@ -22,12 +22,10 @@
                         class="checkbox-inline checkbox" 
                         type="checkbox" 
                         ng-model="item.done">
-                    <span 
-                        class="done-{{item.done}}">{{item.text}}
-                    </span>
+                    <span class="done-{{item.done}}">{{item.text}}</span>
                     <span class='priority {{item.priority}}'></span>
+                    
                     <div class='itemConfig'>
-                        
                         <span 
                             ng-click="removeItem(item)" 
                             class='glyphicon glyphicon-remove'>
@@ -37,25 +35,29 @@
                             class='glyphicon glyphicon-pencil'>
                         </span>
                     </div>
+
                     <p class='itemDate'
-                        ng-model="item.date">{{item.date}}
+                        ng-model="item.date"
+                        ng-class='checkDeadline(item)'
+                        >
+                        {{item.date}}
                     </p>
                 </div>
                 <div class='bottom_line'>
                     <input type="button" class='addButton' value="&#43;"
-                ng-click='formOpen=true'>
+                        ng-click='formOpen=true'>
                 </div>
             </div>
         
             <div ng-show="formOpen" class='formDiv'>
                 <form name="myForm" 
-                ng-submit="addItem()" 
+                ng-submit="addItem()"
                 novalidate>
                     <input class="form-control" type="text" 
                         required ng-model="itemText" 
                         size="30" placeholder="Add task">
                     <span 
-                        on-click="formOpen=false" 
+                        ng-click="formOpen=false" 
                         class='glyphicon glyphicon-remove'>
                     </span>
                     <span ng-show="myForm.itemText.$error.required">
@@ -65,12 +67,14 @@
                         required 
                         ng-model="itemDate" 
                         size="30" type="date">
-                    <select class='form-control' ng-model='priority'    
+                    <select 
+                        class='form-control' 
+                        ng-model='priority'    
                         required>
-                      <option value="">Choose priority</option>
-                      <option value="High">High</option>
-                      <option value="Regular">Regular</option>
-                      <option value="Low">Low</option>
+                      <option value=""> Choose priority </option>
+                      <option value="High"> High </option>
+                      <option value="Regular"> Regular </option>
+                      <option value="Low"> Low </option>
                     </select>
                     <span 
                         ng-show="myform.$invalid">
@@ -80,7 +84,7 @@
                         class="btn btn-primary" 
                         ng-disabled='myForm.$invalid'
                         type="submit" value="Add"
-                        on-click="formOpen=false">
+                        ng-click="formOpen=false">
                 </form>
             </div>
         

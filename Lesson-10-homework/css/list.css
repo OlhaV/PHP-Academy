@@ -73,6 +73,7 @@ body {
 .table .itemDate {
   margin-left: 29px;
   font-size: 13px;
+  font-weight: bold;
 }
 
 .table .itemConfig {
@@ -81,7 +82,7 @@ body {
   top: 5px;
 }
 
-.priority.high, .priority.low, .priority.medium {
+.priority.High, .priority.Low, .priority.Medium {
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -89,16 +90,20 @@ body {
   margin-left: 10px;
 }
 
-.priority.low {
+.priority.Low {
   background: url('../img/low.png') no-repeat;
 }
 
-.priority.medium {
+.priority.Medium {
   background: url('../img/medium.png') no-repeat;
 }
 
-.priority.high {
+.priority.High {
   background: url('../img/high.png') no-repeat;
+}
+
+.overdue {
+  color: red;
 }
 
 .b-main__header {
@@ -143,7 +148,7 @@ body {
     font-size: 40px;
     line-height: 1px;
     background-color: #5b92ff;
-    box-shadow: 0 0 8px 3px grey; 
+    box-shadow: 0 2px 4px 1px #898989; 
 }
 
 
@@ -155,4 +160,15 @@ body {
 
 .bottom_line .addButton {
   outline: none;
+}
+
+
+@media screen and (max-width: 400px) {
+  .wrapper {
+    width: 100%; 
+  }
+
+  .table {
+    padding: 10px;
+  }
 }
