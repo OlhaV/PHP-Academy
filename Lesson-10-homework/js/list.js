@@ -56,9 +56,11 @@
     }
 
     $scope.changeItem = function(item) {
-    	var editedItem = prompt('Do you want to change this item?', $scope.items[$scope.items.indexOf(item)].text);
-    	if(editedItem) {
-    		$scope.items[$scope.items.indexOf(item)].text = editedItem;
+        var editedItemText = prompt('Do you want to change this item?', $scope.items[$scope.items.indexOf(item)].text);
+    	var editedItemDate = prompt('Do you want to change due date?', $scope.items[$scope.items.indexOf(item)].date);
+    	if(editedItemText || editedItemDate) {
+            $scope.items[$scope.items.indexOf(item)].text = editedItemText;
+    		$scope.items[$scope.items.indexOf(item)].date = editedItemDate;
     	}
     }
 
