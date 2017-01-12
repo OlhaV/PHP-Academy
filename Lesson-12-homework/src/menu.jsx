@@ -8,4 +8,4 @@ module.exports = React.creatClass({
 			<li> {this.props.skype} </li>
 		</ul>
 	}
-})
+}); 
